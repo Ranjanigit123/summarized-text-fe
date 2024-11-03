@@ -1,0 +1,15 @@
+<!-- summarizer.component.html -->
+
+<div *ngIf="summarizedTextList && summarizedTextList.length > 0; else noSummarizedTexts">
+    <div class="summary" *ngFor="let text of summarizedTextList; let i = index">
+        <div class="summary-content">
+            {{text.summarizedText}}
+        </div>
+        <button (click)="deleteSummarizedText(text._id)">Delete</button>
+    </div>
+</div>
+<ng-template #noSummarizedTexts>
+    <div class="no-summary-container">
+        <p>No Summarized Text available</p>
+    </div>
+</ng-template>

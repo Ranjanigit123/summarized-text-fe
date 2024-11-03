@@ -1,9 +1,17 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
 
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration()]
+    providers: [
+        provideRouter(routes),
+        provideHttpClient(), // Provides HttpClient
+        { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+        JwtHelperService,
+        FormsModule
+    ]
 };
